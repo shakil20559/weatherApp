@@ -51,6 +51,7 @@ const Page = () => {
         loading={loading}/>
       {error && <p className="text-red-500">{error}</p>}
 
+
       <WeatherCard
          weather={weather} 
          loading={loading}/> 

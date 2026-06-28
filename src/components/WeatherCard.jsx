@@ -1,6 +1,5 @@
-"use client"
+// "use client"
 import Image from 'next/image'
-import React, { useEffect } from 'react'
 import rain from '../../public/rainWeather.jpg'
 import { getWeatherInfo, isNightTime } from '@/services/WeatherCodes'
 
@@ -26,7 +25,7 @@ const WeatherCard = ({weather, }) => {
         {/* Location */}
         <div className="text-center">
           <h2 className="text-3xl font-semibold text-gray-800 dark:text-[#f8fafc]">
-            Dhaka, BD
+           {weather.city}, {weather.country}
           </h2>
           <p className="text-gray-500 dark:text-[#94a3b8] mt-1">
             Current Weather

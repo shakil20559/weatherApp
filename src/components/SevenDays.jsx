@@ -61,7 +61,7 @@ const SevenDayForecast = ({ weather, loading }) => {
   const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
   return (
-    <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mt-4">
+    <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg py-6 px-6 sm:px-10 mt-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
@@ -77,7 +77,7 @@ const SevenDayForecast = ({ weather, loading }) => {
       </div>
 
       {/* Daily Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
         {dailyData.map((day, index) => {
           // Format the date for comparison without timezone issues
           const dayDate = `${day.date.getFullYear()}-${String(day.date.getMonth() + 1).padStart(2, '0')}-${String(day.date.getDate()).padStart(2, '0')}`;

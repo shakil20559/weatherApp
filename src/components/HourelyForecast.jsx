@@ -52,7 +52,6 @@ const HourlyForecast = ({ weather }) => {
       windSpeed: weather.hourly.wind_speed_10m ? Math.round(weather.hourly.wind_speed_10m[startIndex + index]) : 0
     };
   });
-
   
   while (hourlyData.length < 10) {
     break;
