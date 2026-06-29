@@ -58,7 +58,7 @@ const HourlyForecast = ({ weather }) => {
   }
 
   return (
-    <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg py-6 px-4 ">
+    <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-lg py-6 px-4 ">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
@@ -66,7 +66,7 @@ const HourlyForecast = ({ weather }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          8-Hour Forecast
+          10-Hour Forecast
         </h3>
         <span className="text-sm text-gray-500 dark:text-gray-400">
           {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
@@ -85,8 +85,8 @@ const HourlyForecast = ({ weather }) => {
               className={`
                 flex flex-col items-center p-4 rounded-3xl transition-all duration-200
                 ${isNow 
-                  ? 'bg-blue-50 dark:bg-blue-900/30 border-2 border-blue-400 dark:border-blue-500 shadow-md' 
-                  : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-gray-100 dark:hover:bg-gray-700/50 border-2 border-transparent'
+                  ? 'bg-green-600/50 dark:bg-blue-900/30 border-2 border-blue-400 dark:border-blue-500 shadow-md' 
+                  : 'bg-blue-300/50 dark:bg-gray-700/30 hover:bg-blue-400/60 dark:hover:bg-gray-700/50 border-2 border-transparent'
                 }
               `}
             >

@@ -16,13 +16,15 @@ export default function ThemeToggle() {
   }
 
   return (
-    <button
-      onClick={() =>
-        setTheme(theme === "dark" ? "light" : "dark")
-      }
-      className="fixed top-2 right-2 px-4 py-2 border rounded-lg bg-[#0F1A45]/70 dark:bg-white"
-    >
-      {theme === "dark" ? "☀️" : "🌙"}
-    </button>
+  <div className="fixed top-0 z-30 py-2 bg_globalColor " style={{ width: 'inherit', maxWidth: 'inherit' }}>
+    <div className="flex justify-end ">
+      <button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className="mx-6  text-3xl  "
+      >
+        {theme === "dark" ? "☀️" : "🌙"}
+      </button>
+    </div> </div>
+    
   );
 }

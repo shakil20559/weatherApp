@@ -1,93 +1,64 @@
-import { 
-  WiDaySunny, 
-  WiDayCloudy, 
-  WiCloudy, 
-  WiFog, 
-  WiRain, 
-  WiRainMix, 
-  WiSnow, 
-  WiSnowflakeCold, 
-  WiShowers, 
-  WiDayShowers, 
-  WiThunderstorm, 
-  WiStormShowers, 
-  WiDaySleet, 
-  WiNightSleet, 
-  WiCloud, 
-  WiDaySunnyOvercast, 
-  WiNightClear, 
-  WiNightCloudy, 
-  WiNightPartlyCloudy, 
-  WiNightRain, 
-  WiNightSnow, 
-  WiNightThunderstorm, 
-  WiNightFog, 
-  WiHail, 
-  WiSleet 
-} from 'react-icons/wi';
-
-// Group weather conditions by type
 const weatherGroups = {
   CLEAR: { 
     codes: [0, 1],
     description: 'Clear',
-    icon: WiDaySunny,
-    iconNight: WiNightClear
+    icon: '☀️',
+    iconNight: '🌙' // Clean celestial distinction
   },
   PARTLY_CLOUDY: { 
     codes: [2],
     description: 'Partly Cloudy',
-    icon: WiDayCloudy, // Changed from WiDayPartlyCloudy (doesn't exist)
-    iconNight: WiNightPartlyCloudy
+    icon: '⛅',
+    iconNight: '🌌' 
   },
   CLOUDY: { 
     codes: [3],
     description: 'Cloudy',
-    icon: WiCloudy,
-    iconNight: WiNightCloudy
+    icon: '☁️',
+    iconNight: '☁️'
   },
   FOG: { 
     codes: [45, 48],
     description: 'Foggy',
-    icon: WiFog,
-    iconNight: WiNightFog
+    icon: '💨',
+    iconNight: '🌃'
   },
   DRIZZLE: { 
     codes: [51, 53, 55, 56, 57],
     description: 'Drizzle',
-    icon: WiRainMix,
-    iconNight: WiNightRain
+    icon: '🌦️',
+    iconNight: '🌧️'
   },
   RAIN: { 
     codes: [61, 63, 65, 66, 67],
     description: 'Rain',
-    icon: WiRain,
-    iconNight: WiNightRain
+    icon: '🌧️',
+    iconNight: '🌧️'
   },
   SNOW: { 
     codes: [71, 73, 75, 77],
     description: 'Snow',
-    icon: WiSnow,
-    iconNight: WiNightSnow
+    icon: '🌨️',
+    iconNight: '🌨️'
   },
   RAIN_SHOWERS: { 
-    codes: [80, 81, 82],
-    description: 'Rain Showers',
-    icon: WiDayShowers,
-    iconNight: WiNightRain
-  },
+  codes: [80, 81, 82],
+  description: 'Rain Showers',
+  icon: '🌧️', // Blue/white rain cloud - clean look
+  iconNight: '🌧️'
+},
   SNOW_SHOWERS: { 
     codes: [85, 86],
     description: 'Snow Showers',
-    icon: WiSnow,
-    iconNight: WiNightSnow
+    icon: '❄️',
+    iconNight: '❄️'
   },
   THUNDERSTORM: { 
-    codes: [95, 96, 99],
-    description: 'Thunderstorm',
-    icon: WiThunderstorm,
-    iconNight: WiNightThunderstorm
-  }
+  codes: [95, 96, 99],
+  description: 'Thunderstorm',
+  icon: '⚡', // Yellow/white lightning - high contrast
+  iconNight: '⚡'
+}
 };
 
 // Create a reverse mapping for quick lookup
@@ -98,44 +69,40 @@ Object.values(weatherGroups).forEach(group => {
   });
 });
 
+// Create a simple React component that renders an emoji
+const WeatherIcon = ({ emoji, className, ...props }) => {
+  return (
+    <span className={className} {...props}>
+      {emoji}
+    </span>
+  );
+};
+
 export const getWeatherInfo = (code, isNight = false) => {
   const weatherGroup = codeToWeatherMap[code];
   
   if (!weatherGroup) {
     return { 
       description: 'Unknown', 
-      icon: WiCloud,
-      iconComponent: WiCloud
+      icon: '❓',
+      // Return a component that renders the fallback emoji
+      iconComponent: (props) => <WeatherIcon emoji="❓" {...props} />
     };
   }
 
   const iconKey = isNight ? 'iconNight' : 'icon';
-  const IconComponent = weatherGroup[iconKey] || weatherGroup.icon;
+  const emoji = weatherGroup[iconKey] || weatherGroup.icon;
 
   return {
     description: weatherGroup.description,
-    icon: IconComponent,
-    iconComponent: IconComponent,
+    icon: emoji,
+    // Return a React component that renders the emoji with className support
+    iconComponent: (props) => <WeatherIcon emoji={emoji} {...props} />,
     isNight: isNight
   };
 };
 
-// Helper to check if it's night time (optional)
+// Helper to check if it's night time
 export const isNightTime = (hour) => {
   return hour < 6 || hour >= 18;
-};
-
-export const getWeatherInfoSimple = (code) => {
-  const simpleCodes = {
-    0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
-    45: '🌫️', 48: '🌫️',
-    51: '🌦️', 53: '🌦️', 55: '🌧️', 56: '🌧️', 57: '🌧️',
-    61: '🌧️', 63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧️',
-    71: '🌨️', 73: '🌨️', 75: '❄️', 77: '❄️',
-    80: '🌦️', 81: '🌧️', 82: '⛈️',
-    85: '🌨️', 86: '❄️',
-    95: '⛈️', 96: '⛈️', 99: '⛈️'
-  };
-  
-  return simpleCodes[code] || '❓';
 };

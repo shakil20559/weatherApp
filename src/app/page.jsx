@@ -33,7 +33,7 @@ const Page = () => {
   };
   
   useEffect(() => {
-    search("Noakhali");
+    search("Dhaka");
   }, []);
 
   // Log weather whenever it changes
@@ -44,7 +44,7 @@ const Page = () => {
   }, [weather]);
 
   return (
-    <div className=' max-w-5xl w-full flex flex-col '>
+    <div className=' max-w-5xl w-full border-2 relative'>
       <ThemeToggle/>
       <SearchBox 
         onSearch={search} 

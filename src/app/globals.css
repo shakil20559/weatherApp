@@ -24,9 +24,7 @@ body {
 
 .bg_globalColor {
     background: linear-gradient(135deg, #04274e, #ac0582);
-    
     border-color: rgba(240, 171, 252, 0.4);
-    font-family: cursive, sans-serif;
 }
 
 .bg_globalColor:hover {

@@ -16,14 +16,14 @@ const DayForecastCard = ({ day, isToday, isSelected, onSelect }) => {
       className={`
         relative overflow-hidden cursor-pointer rounded-3xl p-6 mt-8 text-white max-w-md mx-auto w-full
         transition-all duration-300 min-h-48 flex flex-col justify-between
-        bg-white dark:bg-[#362e63] shadow-xl hover:scale-[1.02]
+        bg-violet-500 hover:bg-violet-700 dark:bg-purple-900 shadow-xl hover:scale-[1.02]
         ${isSelected ? 'ring-2 ring-purple-400/50 shadow-purple-900/40' : ''}
       `}
     >
       {/* Dynamic Angled Background Overlay (Matches the image) */}
       <div  
-        className="absolute inset-0 bg-gradient-to-r from-[#4f3fb9] to-[#040d30]" 
-        style={{ clipPath: 'polygon(0 0, 100% 34%, 100% 100%, 0% 100%)' }}
+        className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-blue-400 dark:from-blue-400 dark:to-blue-900" 
+        style={{ clipPath: 'polygon(0 0, 100% 40%, 100% 100%, 0% 100%)' }}
       />
 
       {/* Main Content (Relative to sit above clip-path) */}
@@ -33,12 +33,12 @@ const DayForecastCard = ({ day, isToday, isSelected, onSelect }) => {
         <div className="flex flex-col justify-between h-full">
           <div>
             {/* Massive Main Temperature Display */}
-            <h2 className="text-5xl font-light tracking-tight flex items-start">
+            <h2 className="text-5xl  font-light tracking-tight flex items-start ">
               {day.temperatureMax}<span className="text-3xl font-extralight opacity-90">°</span>
             </h2>
             
             {/* High / Low Forecast Values */}
-            <div className="text-sm font-medium text-white/70 mt-2 tracking-wide uppercase">
+            <div className="text-sm font-medium text-white mt-2 tracking-wide uppercase">
               H:{day.temperatureMax}° &nbsp; L:{day.temperatureMin}°
             </div>
           </div>

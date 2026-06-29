@@ -1,7 +1,9 @@
 // "use client"
 import Image from 'next/image'
-import rain from '../../public/rainWeather.jpg'
+import backgroundIMG from '../../public/backgroundSun.jpg'
 import { getWeatherInfo, isNightTime } from '@/services/WeatherCodes'
+import { LuWind } from 'react-icons/lu';
+import { IoWaterOutline } from 'react-icons/io5';
 
 const WeatherCard = ({weather, }) => {
 
@@ -15,73 +17,87 @@ const WeatherCard = ({weather, }) => {
 
   return (
     
-      <div className="max-w-lg w-full mx-auto my-10 py-5 px-12
-      bg-white dark:bg-[#0F1A45]/70
+      <div className="max-w-xl w-full mx-auto my-10 py-5 px-3
+       bg-[url('/backgroundSun.jpg')] bg-cover bg-center bg-no-repeat
       backdrop-blur-xl shadow-lg
-       border border-white/10 dark:border-gray-700 rounded-3xl 
-      transition-colors duration-300
+       border border-gray-700 rounded-3xl 
+      transition-colors duration-300 
       ">
         
         {/* Location */}
         <div className="text-center">
-          <h2 className="text-3xl font-semibold text-gray-800 dark:text-[#f8fafc]">
-           {weather.city}, {weather.country}
+          <h2 className="text-3xl font-medium text-white/90 tracking-wider">
+           {weather.city}
           </h2>
-          <p className="text-gray-500 dark:text-[#94a3b8] mt-1">
-            Current Weather
+          <p className="text-white/60 mt-1 text-2xl">
+           {weather.country}
           </p>
         </div>
 
         {/* Main Content */}
-        <div className="flex items-center justify-between mt-8">
-          
+        <div className="mt-12 ml-6">
           {/* Temperature Info */}
-          <div className=''>
-            <h1 className="text-7xl font-light text-blue-600 ml dark:text-[#f8fafc]">
+           <h1 className="text-7xl font-light text-gray-200 ">
               {Math.round(weather.current.temperature_2m)}°C
             </h1>
 
-            <div className="text-xl font-normal text-gray-700 tracking-wider dark:text-[#f8fafc] mt-2">
-             Sky  {weatherInfo.description}
+            <div className="text-2xl font-normal text-gray-200 tracking-wider mt-2">
+             {weatherInfo.description} Sky 
             </div>
-
-            <p className="text-base text-blue-500 dark:text-[#94a3b8] mt-1">
-              Feels like {Math.round(weather.current.apparent_temperature)}°C
+    
+            <p className="text-base text-gray-300 mt-1">
+              Feels like
+              <span className="text-lg font-semibold ml-1 text-blue-400">
+                {Math.round(weather.current.apparent_temperature)}°c
+              </span> 
             </p>
-          </div>
-
-          {/* Weather Icon */}
-          <div className="w-32 h-32 flex items-center justify-center">
-            <Image
-              src={rain}
-              alt="weather condition"
-              className="object-contain"
-              priority
-            />
-          </div>
         </div>
 
+       
         {/* Extra Details */}
-        <div className="flex justify-between gap-4 mt-8">
-
-          <div className= "w-32 bg-blue-50 dark:bg-[#06142e]/80 rounded-xl p-4 text-center border border-blue-100 dark:border-[#94a3b8]/30">
-            <p className="text-gray-500 dark:text-[#94a3b8] text-base">
-              Humidity
+        <div className="flex items-center justify-between gap-4 mt-12 mb-2 py-2 px-4 sm:px-6 w-full rounded-3xl border border-white/10 
+        bg-transparent backdrop-blur-2xl shadow-2xl ">
+          <div className='flex flex-col gap-2 my-2'>
+            <p className='text-gray-300'>
+               Max: 
+                <span className="text-lg font-semibold ml-1 text-blue-400">
+                {Math.round(weather.daily.temperature_2m_max[0])}°
+                </span>
             </p>
-            <p className="text-lg font-semibold text-gray-800 dark:text-[#f8fafc]">
+              
+            <p className='text-gray-300'>
+               Min: 
+                <span className="text-lg font-semibold ml-1 text-blue-400">
+               {Math.round(weather.daily.temperature_2m_min[0])}°
+                </span>
+            </p>
+              
+          </div>
+
+          
+          {/* humidity & wind */}
+          <div >
+            <div className=" flex gap-8 items-center mb-2 text-center ">
+            <p className="flex items-center gap-1 sm:gap-2 text-gray-200 text-base">
+             <IoWaterOutline className='text-2xl'/> Humidity
+            </p>
+            <p className="text-lg font-medium text-blue-400">
               {weather.current.relative_humidity_2m}%
             </p>
           </div>
 
-          <div className="w-32 bg-blue-50 dark:bg-[#06142e]/80 rounded-xl p-4 text-center border border-blue-100 dark:border-[#94a3b8]/30">
-            <p className="text-gray-500 dark:text-[#94a3b8] text-base">
-              Wind
-            </p>
-            <p className="text-lg font-semibold text-gray-800 dark:text-[#f8fafc]">
-              12 km/h
-            </p>
+            <div className=" flex gap-8 items-center text-center ">
+              <p className="flex items-center gap-2 text-gray-200 text-base">
+              <LuWind className='text-2xl'/>  Wind
+              </p>
+              <p className="text-lg font-medium text-blue-400">
+              {Math.round(weather.current.wind_speed_10m)} km/h 
+
+              </p>
+            </div>
           </div>
-        </div>
+           
+        </div> 
 
       </div>
     // </div>
