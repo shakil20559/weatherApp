@@ -1,6 +1,5 @@
 export const getWeather = async (city, country = null) => {
   try {
-    // Build search query with optional country
     let searchQuery = city;
     if (country) {
       searchQuery = `${city}, ${country}`;

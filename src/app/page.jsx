@@ -12,6 +12,8 @@ const Page = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+   const [city, setCity] = useState('');
+
 
   const search = async (city) => {
     setLoading(true);
@@ -20,7 +22,7 @@ const Page = () => {
       const data = await getWeather(city);
       if(data) {
         setWeather(data);
-        console.log('Weather data:', data); // This will log when data is fetched
+        console.log('Weather data:', data); 
       } else {
         setError('City not found');
       }
@@ -48,7 +50,8 @@ const Page = () => {
       <ThemeToggle/>
       <SearchBox 
         onSearch={search} 
-        loading={loading}/>
+        loading={loading}
+      />
       {error && <p className="text-red-500">{error}</p>}
 
 

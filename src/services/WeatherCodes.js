@@ -3,7 +3,7 @@ const weatherGroups = {
     codes: [0, 1],
     description: 'Clear',
     icon: '☀️',
-    iconNight: '🌙' // Clean celestial distinction
+    iconNight: '🌙' 
   },
   PARTLY_CLOUDY: { 
     codes: [2],
@@ -44,7 +44,7 @@ const weatherGroups = {
   RAIN_SHOWERS: { 
   codes: [80, 81, 82],
   description: 'Rain Showers',
-  icon: '🌧️', // Blue/white rain cloud - clean look
+  icon: '🌧️', 
   iconNight: '🌧️'
 },
   SNOW_SHOWERS: { 
@@ -56,12 +56,12 @@ const weatherGroups = {
   THUNDERSTORM: { 
   codes: [95, 96, 99],
   description: 'Thunderstorm',
-  icon: '⚡', // Yellow/white lightning - high contrast
+  icon: '⚡', 
   iconNight: '⚡'
 }
 };
 
-// Create a reverse mapping for quick lookup
+
 const codeToWeatherMap = {};
 Object.values(weatherGroups).forEach(group => {
   group.codes.forEach(code => {
@@ -69,7 +69,6 @@ Object.values(weatherGroups).forEach(group => {
   });
 });
 
-// Create a simple React component that renders an emoji
 const WeatherIcon = ({ emoji, className, ...props }) => {
   return (
     <span className={className} {...props}>
@@ -85,7 +84,6 @@ export const getWeatherInfo = (code, isNight = false) => {
     return { 
       description: 'Unknown', 
       icon: '❓',
-      // Return a component that renders the fallback emoji
       iconComponent: (props) => <WeatherIcon emoji="❓" {...props} />
     };
   }
@@ -96,13 +94,11 @@ export const getWeatherInfo = (code, isNight = false) => {
   return {
     description: weatherGroup.description,
     icon: emoji,
-    // Return a React component that renders the emoji with className support
     iconComponent: (props) => <WeatherIcon emoji={emoji} {...props} />,
     isNight: isNight
   };
 };
 
-// Helper to check if it's night time
 export const isNightTime = (hour) => {
   return hour < 6 || hour >= 18;
 };

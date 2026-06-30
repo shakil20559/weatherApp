@@ -1,6 +1,5 @@
-// "use client"
 import Image from 'next/image'
-import backgroundIMG from '../../public/backgroundSun.jpg'
+// import backgroundIMG from '../../public/backgroundSun.jpg'
 import { getWeatherInfo, isNightTime } from '@/services/WeatherCodes'
 import { LuWind } from 'react-icons/lu';
 import { IoWaterOutline } from 'react-icons/io5';

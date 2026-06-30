@@ -14,7 +14,6 @@ const SearchBox = ({ onSearch, loading }) => {
       setCity(''); // Optional: Clear input after search
     }
   }
-
   return (
     <div className='flex flex-col items-center justify-center w-full max-w-2xl mx-auto px-4 mt-16 mb-10'>
       <div className='text-center mb-6'>

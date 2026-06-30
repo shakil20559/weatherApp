@@ -1,4 +1,4 @@
-// components/SevenDayForecast.jsx
+'use client';
 import React, { useState } from 'react';
 import DayForecastCard from './DayForecastCard';
 import ForecastDetails from './ForecastDetails';
@@ -19,9 +19,7 @@ const SevenDayForecast = ({ weather, loading }) => {
     );
   }
 
-  // Helper function to create date without timezone issues
   const createDateFromString = (dateStr) => {
-    // Parse the date string (YYYY-MM-DD) and create date in local timezone
     const parts = dateStr.split('-').map(Number);
     return new Date(parts[0], parts[1] - 1, parts[2]);
   };
@@ -31,7 +29,7 @@ const SevenDayForecast = ({ weather, loading }) => {
     const dateObj = createDateFromString(date);
     const weatherInfo = getWeatherInfo(
       weather.daily.weather_code[index],
-      false // Use isNightTime based on the hour if needed
+      false 
     );
 
     return {
@@ -76,10 +74,8 @@ const SevenDayForecast = ({ weather, loading }) => {
         </span>
       </div>
 
-      {/* Daily Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
         {dailyData.map((day, index) => {
-          // Format the date for comparison without timezone issues
           const dayDate = `${day.date.getFullYear()}-${String(day.date.getMonth() + 1).padStart(2, '0')}-${String(day.date.getDate()).padStart(2, '0')}`;
           const isToday = dayDate === todayStr;
           const isSelected = selectedDay === index;
