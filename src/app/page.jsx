@@ -44,7 +44,7 @@ const Page = () => {
   }, [weather]);
 
   return (
-    <div className=' max-w-5xl w-full border-2 relative'>
+    <div className=' max-w-5xl w-full relative'>
       <ThemeToggle/>
       <SearchBox 
         onSearch={search} 
